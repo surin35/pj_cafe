@@ -4,6 +4,7 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 import os
+from pathlib import Path
 
 # 페이지 설정
 st.set_page_config(page_title="서울시 카페 입지 분석 대시보드", layout="wide")
@@ -143,4 +144,5 @@ try:
 except Exception as e:
     st.error(f"오류가 발생했습니다: {e}")
     st.info("데이터 파일이 올바른 위치에 있는지, 인코딩이 cp949인지 확인해 주세요.")
+
 
