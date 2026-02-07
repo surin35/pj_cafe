@@ -13,6 +13,7 @@ st.set_page_config(page_title="서울시 카페 입지 분석 대시보드", lay
 @st.cache_data
 def load_data():
     base_path = Path(__file__).resolve().parent / "data_2"
+
     cafe_path = base_path / "cafe_data_merge_v2.csv"
     work_path = base_path / "worker.csv"
     
@@ -144,5 +145,6 @@ try:
 except Exception as e:
     st.error(f"오류가 발생했습니다: {e}")
     st.info("데이터 파일이 올바른 위치에 있는지, 인코딩이 cp949인지 확인해 주세요.")
+
 
 
