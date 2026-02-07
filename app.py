@@ -4,7 +4,6 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 import os
-from pathlib import Path
 
 # 페이지 설정
 st.set_page_config(page_title="서울시 카페 입지 분석 대시보드", layout="wide")
@@ -12,10 +11,10 @@ st.set_page_config(page_title="서울시 카페 입지 분석 대시보드", lay
 # 데이터 로드 함수 (캐싱 적용)
 @st.cache_data
 def load_data():
-    base_path = Path(__file__).resolve().parent / "data_2"
-
-    cafe_path = base_path / "cafe_data_merge_v2.csv"
-    work_path = base_path / "worker.csv"
+    # 현재 파일(app.py)이 있는 디렉토리를 기준으로 경로 설정
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    cafe_path = os.path.join(base_path, 'cafe_data_merge_v2.csv')
+    work_path = os.path.join(base_path, 'seoul_work_data_updated.csv')
     
     # 카페 데이터 로드
     df = pd.read_csv(cafe_path, encoding='cp949', low_memory=False)
@@ -145,6 +144,3 @@ try:
 except Exception as e:
     st.error(f"오류가 발생했습니다: {e}")
     st.info("데이터 파일이 올바른 위치에 있는지, 인코딩이 cp949인지 확인해 주세요.")
-
-
-
